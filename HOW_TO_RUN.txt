@@ -1,0 +1,54 @@
+================================================================================
+                    HOW TO RUN THIS PROJECT (SIMPLE 3 STEPS)
+================================================================================
+
+No IDE, VS Code, or Antigravity needed!
+You only need a Terminal and any Web Browser (Chrome, Safari, Firefox).
+
+--------------------------------------------------------------------------------
+STEP 1: OPEN TERMINAL & GO TO THE PROJECT FOLDER
+--------------------------------------------------------------------------------
+Unzip the file, open your Terminal, and navigate into the folder:
+
+    cd IntentX
+
+--------------------------------------------------------------------------------
+STEP 2: RUN THE LAUNCHER SCRIPT
+--------------------------------------------------------------------------------
+Type this single command and press Enter:
+
+    ./run.sh
+
+(This automatically prepares Python and starts the web server on your machine)
+
+--------------------------------------------------------------------------------
+STEP 3: OPEN YOUR BROWSER
+--------------------------------------------------------------------------------
+Open any browser and go to:
+
+    http://127.0.0.1:8000
+
+You will see the live IntentX AI Security Dashboard!
+
+================================================================================
+                    HOW TO TEST INTRUSIONS & ATTACKS
+================================================================================
+
+Open a second terminal window (or run in terminal):
+
+1. TO SHOW NORMAL BASELINE (Dashboard turns GREEN):
+   ./run.sh --mode baseline
+
+2. TO SIMULATE KERNEL ROOTKIT INTRUSION (Dashboard turns RED with XAI explanation):
+   ./run.sh --mode intrusion --type kernel
+
+3. TO SIMULATE PROCESS BURST / FORK BOMB:
+   ./run.sh --mode intrusion --type process_churn
+
+4. TO SIMULATE NETWORK DATA EXFILTRATION:
+   ./run.sh --mode intrusion --type network_exfil
+
+On the web dashboard, scroll down to the "Explainable AI (XAI)" card to see the 
+percentage contribution of the attack, and click "Adopt in Console" to safely 
+apply the recommended security mitigation!
+================================================================================

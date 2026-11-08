@@ -1,0 +1,766 @@
+version: "2.0"
+
+metadata:
+  name: "IntentX Dataset Generation Configuration"
+  description: >
+    Controlled and reproducible linguistic templates and entity pools
+    used to generate candidate examples for the IntentX intent engine.
+
+generation:
+  target_examples_per_intent: 100
+
+  principles:
+    deterministic: true
+    preserve_intent_boundaries: true
+    avoid_arbitrary_shell: true
+    require_validation_before_merge: true
+
+
+# ============================================================
+# ENTITY POOLS
+# ============================================================
+
+entities:
+
+  services:
+    - nginx
+    - ssh
+    - apache
+    - docker
+    - cron
+    - mysql
+    - postgresql
+    - redis
+
+  paths:
+    - /tmp/report.txt
+    - /tmp/data.txt
+    - /var/log/app.log
+    - /var/log/system.log
+    - /etc/hosts
+    - /etc/nginx/nginx.conf
+    - /home/user/notes.txt
+    - /opt/application/config.ini
+
+  directories:
+    - /tmp
+    - /var/log
+    - /etc
+    - /opt
+    - /home/user
+    - /usr/local
+    - reports
+    - backup
+
+  packages:
+    - nginx
+    - curl
+    - git
+    - vim
+    - htop
+    - redis
+    - apache2
+    - postgresql
+
+  pids:
+    - "1234"
+    - "2345"
+    - "3456"
+    - "4321"
+    - "5678"
+    - "6789"
+    - "7654"
+    - "9876"
+
+  devices:
+    - /dev/sdb
+    - /dev/sdc
+    - /dev/vdb
+    - /dev/xvdb
+
+  usernames:
+    - alice
+    - bob
+    - deploy
+    - appuser
+    - backupuser
+    - webuser
+
+  permissions:
+    - "600"
+    - "640"
+    - "644"
+    - "700"
+    - "750"
+    - "755"
+
+  patterns:
+    - ERROR
+    - WARNING
+    - failed
+    - timeout
+    - database
+    - connection
+    - authentication
+    - exception
+
+  ports:
+    - "22"
+    - "80"
+    - "443"
+    - "3306"
+    - "5432"
+    - "6379"
+
+
+# ============================================================
+# INTENT GENERATION DEFINITIONS
+# ============================================================
+
+intents:
+
+  # ==========================================================
+  # 01 SYSTEM INFORMATION
+  # ==========================================================
+
+  system_information:
+    variants:
+
+      - action: show_os
+        templates:
+          - "show operating system information"
+          - "what operating system is this"
+          - "show the OS details"
+          - "tell me the operating system"
+          - "display operating system information"
+          - "which OS is running"
+
+      - action: show_kernel
+        templates:
+          - "show kernel information"
+          - "show the kernel version"
+          - "what kernel is running"
+          - "display kernel details"
+          - "tell me the kernel version"
+          - "which kernel is this system using"
+
+      - action: show_architecture
+        templates:
+          - "show system architecture"
+          - "what is the system architecture"
+          - "display CPU architecture"
+          - "show machine architecture"
+          - "tell me the architecture"
+          - "is this system 64 bit"
+
+      - action: show_hostname
+        templates:
+          - "show the hostname"
+          - "what is the hostname"
+          - "display the system hostname"
+          - "tell me this machine hostname"
+          - "show machine name"
+          - "what is this server called"
+
+
+  # ==========================================================
+  # 02 STORAGE INSPECTION
+  # ==========================================================
+
+  storage_inspection:
+    variants:
+
+      - action: filesystem_usage
+        templates:
+          - "show disk usage"
+          - "show filesystem usage"
+          - "check available disk space"
+          - "how much disk space is free"
+          - "display filesystem space"
+          - "check storage usage"
+          - "show available storage"
+          - "how full are the filesystems"
+
+      - action: directory_size
+        expansion_entity: directories
+        entity_name: PATH
+        templates:
+          - "show the size of {value}"
+          - "check how large {value} is"
+          - "calculate the size of {value}"
+          - "how much space does {value} use"
+          - "display disk usage for {value}"
+          - "check the storage used by {value}"
+          - "tell me the size of {value}"
+          - "how large is {value}"
+
+
+  # ==========================================================
+  # 03 MEMORY INSPECTION
+  # ==========================================================
+
+  memory_inspection:
+    action: memory_usage
+    templates:
+      - "show memory usage"
+      - "check memory usage"
+      - "show available memory"
+      - "how much memory is available"
+      - "show RAM usage"
+      - "check RAM usage"
+      - "how much RAM is free"
+      - "display current memory usage"
+      - "can you show me the memory usage"
+      - "please check available memory"
+      - "tell me how much RAM is available"
+      - "what is the current memory usage"
+
+
+  # ==========================================================
+  # 04 PROCESS INSPECTION
+  # ==========================================================
+
+  process_inspection:
+    variants:
+
+      - action: list
+        templates:
+          - "list running processes"
+          - "show running processes"
+          - "display active processes"
+          - "what processes are running"
+          - "show current processes"
+          - "list active processes"
+          - "show me the process list"
+          - "which processes are currently running"
+
+      - action: inspect
+        expansion_entity: pids
+        entity_name: PID
+        templates:
+          - "inspect process {value}"
+          - "show process {value}"
+          - "show details for PID {value}"
+          - "inspect PID {value}"
+          - "display information about process {value}"
+          - "tell me about PID {value}"
+          - "show information for process {value}"
+          - "check process {value}"
+
+
+  # ==========================================================
+  # 05 SERVICE INSPECTION
+  # ==========================================================
+
+  service_inspection:
+    action: status
+    expansion_entity: services
+    entity_name: SERVICE
+    templates:
+      - "check {value} status"
+      - "show {value} status"
+      - "is {value} running"
+      - "is the {value} service running"
+      - "check whether {value} is running"
+      - "show me the status of {value}"
+      - "can you check {value} status"
+      - "please check {value} status"
+      - "tell me whether {value} is running"
+      - "what is the current status of {value}"
+      - "can you tell me if {value} is running"
+      - "please show me the current status of {value}"
+
+
+  # ==========================================================
+  # 06 NETWORK INSPECTION
+  # ==========================================================
+
+  network_inspection:
+    variants:
+
+      - action: interfaces
+        templates:
+          - "show network interfaces"
+          - "list network interfaces"
+          - "display network interfaces"
+          - "what network interfaces are available"
+          - "show interface information"
+          - "list the system network interfaces"
+          - "show network adapter details"
+          - "display interface configuration"
+
+      - action: connections
+        templates:
+          - "show network connections"
+          - "list active connections"
+          - "display current network connections"
+          - "what connections are active"
+          - "show active network sessions"
+          - "list current connections"
+          - "display network sessions"
+          - "show established connections"
+
+      - action: listening_ports
+        templates:
+          - "show listening ports"
+          - "list listening ports"
+          - "which ports are listening"
+          - "show open listening ports"
+          - "display listening network ports"
+          - "check which ports are listening"
+          - "can you show the listening ports"
+          - "what ports are currently listening"
+
+
+  # ==========================================================
+  # 07 FILE LISTING
+  # ==========================================================
+
+  file_listing:
+    action: list
+    expansion_entity: directories
+    entity_name: PATH
+    templates:
+      - "list files in {value}"
+      - "show files in {value}"
+      - "list the contents of {value}"
+      - "show the contents of {value}"
+      - "what files are in {value}"
+      - "display files in {value}"
+      - "can you list files in {value}"
+      - "please show files in {value}"
+      - "show me what is inside {value}"
+      - "list everything in {value}"
+      - "can you show the contents of {value}"
+      - "please list the contents of {value}"
+
+
+  # ==========================================================
+  # 08 FILE READ
+  # ==========================================================
+
+  file_read:
+    variants:
+
+      - action: read
+        expansion_entity: paths
+        entity_name: PATH
+        templates:
+          - "read {value}"
+          - "show {value}"
+          - "display {value}"
+          - "show the contents of {value}"
+          - "read the contents of {value}"
+          - "can you read {value}"
+          - "please show {value}"
+          - "show me what is in {value}"
+
+      - action: head
+        expansion_entity: paths
+        entity_name: PATH
+        templates:
+          - "show the first lines of {value}"
+          - "show the beginning of {value}"
+          - "display the first lines of {value}"
+          - "read the beginning of {value}"
+
+      - action: tail
+        expansion_entity: paths
+        entity_name: PATH
+        templates:
+          - "show the last lines of {value}"
+          - "show the end of {value}"
+          - "display the last lines of {value}"
+          - "read the end of {value}"
+
+
+  # ==========================================================
+  # 09 FILE SEARCH
+  # ==========================================================
+
+  file_search:
+    variants:
+
+      - action: find
+        expansion_entity: patterns
+        entity_name: PATTERN
+        templates:
+          - "find files named {value}"
+          - "search for files matching {value}"
+          - "find a file called {value}"
+          - "locate files matching {value}"
+          - "search for {value} files"
+          - "find files containing {value} in the name"
+          - "look for files named {value}"
+          - "locate a file called {value}"
+
+
+  # ==========================================================
+  # 10 TEXT SEARCH
+  # ==========================================================
+
+  text_search:
+    variants:
+
+      - action: search
+        expansion_entities:
+          pattern: patterns
+          path: paths
+
+        entity_names:
+          pattern: PATTERN
+          path: PATH
+
+        templates:
+          - "search for {pattern} in {path}"
+          - "find {pattern} in {path}"
+          - "look for {pattern} inside {path}"
+          - "search {path} for {pattern}"
+          - "find occurrences of {pattern} in {path}"
+          - "check {path} for {pattern}"
+
+
+  # ==========================================================
+  # 11 FILE CREATE
+  # ==========================================================
+
+  file_create:
+    variants:
+
+      - action: create_file
+        expansion_entity: paths
+        entity_name: PATH
+        templates:
+          - "create file {value}"
+          - "create {value}"
+          - "make a new file at {value}"
+          - "create a new file {value}"
+          - "please create {value}"
+          - "make file {value}"
+
+      - action: create_directory
+        expansion_entity: directories
+        entity_name: PATH
+        templates:
+          - "create directory {value}"
+          - "create folder {value}"
+          - "make directory {value}"
+          - "make a folder at {value}"
+          - "please create directory {value}"
+          - "create a new folder {value}"
+
+
+  # ==========================================================
+  # 12 FILE COPY
+  # ==========================================================
+
+  file_copy:
+    variants:
+
+      - action: copy
+        expansion_entities:
+          source: paths
+          destination: paths
+
+        entity_names:
+          source: SOURCE_PATH
+          destination: DESTINATION_PATH
+
+        templates:
+          - "copy {source} to {destination}"
+          - "copy {source} into {destination}"
+          - "make a copy of {source} at {destination}"
+          - "please copy {source} to {destination}"
+          - "duplicate {source} to {destination}"
+          - "copy the file {source} to {destination}"
+
+
+  # ==========================================================
+  # 13 FILE MOVE
+  # ==========================================================
+
+  file_move:
+    variants:
+
+      - action: move
+        expansion_entities:
+          source: paths
+          destination: paths
+
+        entity_names:
+          source: SOURCE_PATH
+          destination: DESTINATION_PATH
+
+        templates:
+          - "move {source} to {destination}"
+          - "move {source} into {destination}"
+          - "please move {source} to {destination}"
+          - "relocate {source} to {destination}"
+
+      - action: rename
+        expansion_entities:
+          source: paths
+          destination: paths
+
+        entity_names:
+          source: SOURCE_PATH
+          destination: DESTINATION_PATH
+
+        templates:
+          - "rename {source} to {destination}"
+          - "change the name of {source} to {destination}"
+          - "please rename {source} to {destination}"
+          - "rename file {source} as {destination}"
+
+
+  # ==========================================================
+  # 14 FILE DELETE
+  # ==========================================================
+
+  file_delete:
+    action: delete
+    expansion_entity: paths
+    entity_name: PATH
+    templates:
+      - "delete {value}"
+      - "remove {value}"
+      - "delete the file {value}"
+      - "remove the file {value}"
+      - "please delete {value}"
+      - "please remove {value}"
+      - "can you delete {value}"
+      - "can you remove {value}"
+      - "get rid of {value}"
+      - "delete {value} from the system"
+      - "remove {value} from the system"
+      - "I want to delete {value}"
+
+
+  # ==========================================================
+  # 15 PERMISSION CHANGE
+  # ==========================================================
+
+  permission_change:
+    variants:
+
+      - action: chmod
+        expansion_entities:
+          permission: permissions
+          path: paths
+
+        entity_names:
+          permission: PERMISSION
+          path: PATH
+
+        templates:
+          - "change permissions of {path} to {permission}"
+          - "set permissions on {path} to {permission}"
+          - "chmod {path} to {permission}"
+          - "make {path} permission {permission}"
+
+      - action: chown
+        expansion_entities:
+          username: usernames
+          path: paths
+
+        entity_names:
+          username: USERNAME
+          path: PATH
+
+        templates:
+          - "change owner of {path} to {username}"
+          - "set owner of {path} to {username}"
+          - "make {username} the owner of {path}"
+          - "change ownership of {path} to {username}"
+
+
+  # ==========================================================
+  # 16 PROCESS TERMINATION
+  # ==========================================================
+
+  process_termination:
+    variants:
+
+      - action: terminate
+        expansion_entity: pids
+        entity_name: PID
+        templates:
+          - "stop process {value}"
+          - "terminate process {value}"
+          - "stop PID {value}"
+          - "terminate PID {value}"
+          - "please stop process {value}"
+          - "end process {value}"
+          - "terminate the process with PID {value}"
+          - "stop the process with PID {value}"
+
+      - action: force_terminate
+        expansion_entity: pids
+        entity_name: PID
+        templates:
+          - "force kill process {value}"
+          - "force terminate process {value}"
+          - "kill PID {value} forcefully"
+          - "force kill PID {value}"
+          - "immediately kill process {value}"
+          - "forcefully terminate PID {value}"
+
+
+  # ==========================================================
+  # 17 SERVICE MANAGEMENT
+  # ==========================================================
+
+  service_management:
+    variants:
+
+      - action: start
+        expansion_entity: services
+        entity_name: SERVICE
+        templates:
+          - "start {value}"
+          - "start the {value} service"
+          - "please start {value}"
+          - "bring up the {value} service"
+
+      - action: stop
+        expansion_entity: services
+        entity_name: SERVICE
+        templates:
+          - "stop {value}"
+          - "stop the {value} service"
+          - "please stop {value}"
+          - "shut down the {value} service"
+
+      - action: restart
+        expansion_entity: services
+        entity_name: SERVICE
+        templates:
+          - "restart {value}"
+          - "restart the {value} service"
+          - "please restart {value}"
+          - "restart service {value}"
+
+      - action: reload
+        expansion_entity: services
+        entity_name: SERVICE
+        templates:
+          - "reload {value}"
+          - "reload the {value} service"
+          - "please reload {value}"
+          - "reload service {value}"
+
+
+  # ==========================================================
+  # 18 PACKAGE MANAGEMENT
+  # ==========================================================
+
+  package_management:
+    variants:
+
+      - action: install
+        expansion_entity: packages
+        entity_name: PACKAGE
+        templates:
+          - "install {value}"
+          - "install package {value}"
+          - "please install {value}"
+          - "add the {value} package"
+          - "install {value} on this system"
+          - "can you install {value}"
+
+      - action: remove
+        expansion_entity: packages
+        entity_name: PACKAGE
+        templates:
+          - "remove {value}"
+          - "remove package {value}"
+          - "uninstall {value}"
+          - "please remove {value}"
+          - "uninstall package {value}"
+          - "delete the {value} package"
+
+      - action: update
+        templates:
+          - "update package information"
+          - "refresh package information"
+          - "update the package index"
+          - "refresh the package index"
+          - "check for package updates"
+          - "update available package information"
+
+
+  # ==========================================================
+  # 19 SYSTEM POWER
+  # ==========================================================
+
+  system_power:
+    variants:
+
+      - action: reboot
+        templates:
+          - "reboot the system"
+          - "restart the machine"
+          - "restart the computer"
+          - "reboot this server"
+          - "please reboot the system"
+          - "restart this system"
+
+      - action: shutdown
+        templates:
+          - "shut down the system"
+          - "power off the machine"
+          - "turn off the system"
+          - "shut down this server"
+          - "please power off the system"
+          - "turn this machine off"
+
+
+  # ==========================================================
+  # 20 DISK MANAGEMENT
+  # ==========================================================
+
+  disk_management:
+    action: format
+    expansion_entity: devices
+    entity_name: DEVICE
+    templates:
+      - "format {value}"
+      - "format disk {value}"
+      - "format device {value}"
+      - "create a filesystem on {value}"
+      - "erase and format {value}"
+      - "prepare {value} with a new filesystem"
+      - "please format {value}"
+      - "initialize and format {value}"
+    # ==========================================================
+  # 21 OUT OF SCOPE
+  # ==========================================================
+
+  out_of_scope:
+    action: ""
+
+    templates:
+      - "what is the weather today"
+      - "tell me a joke"
+      - "write a poem"
+      - "explain photosynthesis"
+      - "what is the capital of France"
+      - "translate hello into Spanish"
+      - "write me a Python game"
+      - "create a presentation"
+      - "send an email to John"
+      - "book a restaurant"
+      - "what is five plus five"
+      - "recommend a movie"
+      - "summarize this article"
+      - "write a birthday message"
+      - "how do I cook pasta"
+      - "tell me about machine learning"
+      - "what time is it in Tokyo"
+      - "find flights to London"
+      - "generate an image of a mountain"
+      - "help me write my resume"
+      - "who won the football match"
+      - "what is artificial intelligence"
+      - "give me a workout plan"
+      - "recommend a laptop"

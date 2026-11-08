@@ -1,0 +1,242 @@
+text,intent,action,entities,template_family,source
+what architecture is this machine,system_information,show_architecture,{},gold_manual,gold
+show disk space,storage_inspection,filesystem_usage,{},gold_manual,gold
+check the size of /var/log,storage_inspection,directory_size,"{""PATH"":""/var/log""}",gold_manual,gold
+show process 4321,process_inspection,inspect,"{""PID"":""4321""}",gold_manual,gold
+find nginx processes,process_inspection,inspect,"{""PATTERN"":""nginx""}",gold_manual,gold
+show listening ports,network_inspection,listening_ports,{},gold_manual,gold
+read /var/log/app.log,file_read,read,"{""PATH"":""/var/log/app.log""}",gold_manual,gold
+show the first lines of /tmp/data.txt,file_read,head,"{""PATH"":""/tmp/data.txt""}",gold_manual,gold
+find python files,file_search,find,"{""PATTERN"":""*.py""}",gold_manual,gold
+search for log files,file_search,find,"{""PATTERN"":""*.log""}",gold_manual,gold
+move report.txt to archive/report.txt,file_move,move,"{""DESTINATION_PATH"":""archive/report.txt"",""SOURCE_PATH"":""report.txt""}",gold_manual,gold
+rename old.txt to new.txt,file_move,rename,"{""DESTINATION_PATH"":""new.txt"",""SOURCE_PATH"":""old.txt""}",gold_manual,gold
+make script.sh executable,permission_change,chmod,"{""PATH"":""script.sh"",""PERMISSION"":""+x""}",gold_manual,gold
+change owner of app.log to alice,permission_change,chown,"{""PATH"":""app.log"",""USERNAME"":""alice""}",gold_manual,gold
+force kill process 1234,process_termination,force_terminate,"{""PID"":""1234""}",gold_manual,gold
+restart nginx,service_management,restart,"{""SERVICE"":""nginx""}",gold_manual,gold
+start ssh,service_management,start,"{""SERVICE"":""ssh""}",gold_manual,gold
+create a filesystem on /dev/sdc,disk_management,format,"{""DEVICE"":""/dev/sdc""}",gold_manual,gold
+initialize and format /dev/sdb,disk_management,format,"{""DEVICE"":""/dev/sdb""}",initialize and format {value},generated
+initialize and format /dev/sdc,disk_management,format,"{""DEVICE"":""/dev/sdc""}",initialize and format {value},generated
+initialize and format /dev/vdb,disk_management,format,"{""DEVICE"":""/dev/vdb""}",initialize and format {value},generated
+initialize and format /dev/xvdb,disk_management,format,"{""DEVICE"":""/dev/xvdb""}",initialize and format {value},generated
+copy the file /var/log/system.log to /tmp/data.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/data.txt"",""SOURCE_PATH"":""/var/log/system.log""}",copy the file {source} to {destination},generated
+copy the file /tmp/data.txt to /etc/nginx/nginx.conf,file_copy,copy,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/tmp/data.txt""}",copy the file {source} to {destination},generated
+copy the file /var/log/app.log to /tmp/report.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/report.txt"",""SOURCE_PATH"":""/var/log/app.log""}",copy the file {source} to {destination},generated
+copy the file /home/user/notes.txt to /tmp/data.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/data.txt"",""SOURCE_PATH"":""/home/user/notes.txt""}",copy the file {source} to {destination},generated
+copy the file /tmp/data.txt to /var/log/app.log,file_copy,copy,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/tmp/data.txt""}",copy the file {source} to {destination},generated
+copy the file /tmp/data.txt to /tmp/report.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/report.txt"",""SOURCE_PATH"":""/tmp/data.txt""}",copy the file {source} to {destination},generated
+copy the file /tmp/report.txt to /etc/nginx/nginx.conf,file_copy,copy,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/tmp/report.txt""}",copy the file {source} to {destination},generated
+copy the file /home/user/notes.txt to /etc/nginx/nginx.conf,file_copy,copy,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/home/user/notes.txt""}",copy the file {source} to {destination},generated
+copy the file /tmp/report.txt to /opt/application/config.ini,file_copy,copy,"{""DESTINATION_PATH"":""/opt/application/config.ini"",""SOURCE_PATH"":""/tmp/report.txt""}",copy the file {source} to {destination},generated
+copy the file /etc/nginx/nginx.conf to /tmp/data.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/data.txt"",""SOURCE_PATH"":""/etc/nginx/nginx.conf""}",copy the file {source} to {destination},generated
+copy the file /etc/hosts to /opt/application/config.ini,file_copy,copy,"{""DESTINATION_PATH"":""/opt/application/config.ini"",""SOURCE_PATH"":""/etc/hosts""}",copy the file {source} to {destination},generated
+copy the file /etc/nginx/nginx.conf to /var/log/app.log,file_copy,copy,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/etc/nginx/nginx.conf""}",copy the file {source} to {destination},generated
+copy the file /etc/hosts to /tmp/report.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/report.txt"",""SOURCE_PATH"":""/etc/hosts""}",copy the file {source} to {destination},generated
+copy the file /var/log/system.log to /tmp/report.txt,file_copy,copy,"{""DESTINATION_PATH"":""/tmp/report.txt"",""SOURCE_PATH"":""/var/log/system.log""}",copy the file {source} to {destination},generated
+copy the file /etc/hosts to /etc/nginx/nginx.conf,file_copy,copy,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/etc/hosts""}",copy the file {source} to {destination},generated
+copy the file /tmp/report.txt to /var/log/system.log,file_copy,copy,"{""DESTINATION_PATH"":""/var/log/system.log"",""SOURCE_PATH"":""/tmp/report.txt""}",copy the file {source} to {destination},generated
+copy the file /var/log/app.log to /home/user/notes.txt,file_copy,copy,"{""DESTINATION_PATH"":""/home/user/notes.txt"",""SOURCE_PATH"":""/var/log/app.log""}",copy the file {source} to {destination},generated
+make a folder at /tmp,file_create,create_directory,"{""PATH"":""/tmp""}",make a folder at {value},generated
+create a new folder /tmp,file_create,create_directory,"{""PATH"":""/tmp""}",create a new folder {value},generated
+make a folder at /var/log,file_create,create_directory,"{""PATH"":""/var/log""}",make a folder at {value},generated
+create a new folder /var/log,file_create,create_directory,"{""PATH"":""/var/log""}",create a new folder {value},generated
+make a folder at /etc,file_create,create_directory,"{""PATH"":""/etc""}",make a folder at {value},generated
+create a new folder /etc,file_create,create_directory,"{""PATH"":""/etc""}",create a new folder {value},generated
+make a folder at /opt,file_create,create_directory,"{""PATH"":""/opt""}",make a folder at {value},generated
+create a new folder /opt,file_create,create_directory,"{""PATH"":""/opt""}",create a new folder {value},generated
+make a folder at /home/user,file_create,create_directory,"{""PATH"":""/home/user""}",make a folder at {value},generated
+create a new folder /home/user,file_create,create_directory,"{""PATH"":""/home/user""}",create a new folder {value},generated
+make a folder at /usr/local,file_create,create_directory,"{""PATH"":""/usr/local""}",make a folder at {value},generated
+create a new folder /usr/local,file_create,create_directory,"{""PATH"":""/usr/local""}",create a new folder {value},generated
+make a folder at reports,file_create,create_directory,"{""PATH"":""reports""}",make a folder at {value},generated
+create a new folder reports,file_create,create_directory,"{""PATH"":""reports""}",create a new folder {value},generated
+make a folder at backup,file_create,create_directory,"{""PATH"":""backup""}",make a folder at {value},generated
+create a new folder backup,file_create,create_directory,"{""PATH"":""backup""}",create a new folder {value},generated
+remove the file /tmp/report.txt,file_delete,delete,"{""PATH"":""/tmp/report.txt""}",remove the file {value},generated
+delete /tmp/report.txt from the system,file_delete,delete,"{""PATH"":""/tmp/report.txt""}",delete {value} from the system,generated
+remove the file /tmp/data.txt,file_delete,delete,"{""PATH"":""/tmp/data.txt""}",remove the file {value},generated
+delete /tmp/data.txt from the system,file_delete,delete,"{""PATH"":""/tmp/data.txt""}",delete {value} from the system,generated
+remove the file /var/log/app.log,file_delete,delete,"{""PATH"":""/var/log/app.log""}",remove the file {value},generated
+delete /var/log/app.log from the system,file_delete,delete,"{""PATH"":""/var/log/app.log""}",delete {value} from the system,generated
+remove the file /var/log/system.log,file_delete,delete,"{""PATH"":""/var/log/system.log""}",remove the file {value},generated
+delete /var/log/system.log from the system,file_delete,delete,"{""PATH"":""/var/log/system.log""}",delete {value} from the system,generated
+remove the file /etc/hosts,file_delete,delete,"{""PATH"":""/etc/hosts""}",remove the file {value},generated
+delete /etc/hosts from the system,file_delete,delete,"{""PATH"":""/etc/hosts""}",delete {value} from the system,generated
+remove the file /etc/nginx/nginx.conf,file_delete,delete,"{""PATH"":""/etc/nginx/nginx.conf""}",remove the file {value},generated
+delete /etc/nginx/nginx.conf from the system,file_delete,delete,"{""PATH"":""/etc/nginx/nginx.conf""}",delete {value} from the system,generated
+remove the file /home/user/notes.txt,file_delete,delete,"{""PATH"":""/home/user/notes.txt""}",remove the file {value},generated
+delete /home/user/notes.txt from the system,file_delete,delete,"{""PATH"":""/home/user/notes.txt""}",delete {value} from the system,generated
+remove the file /opt/application/config.ini,file_delete,delete,"{""PATH"":""/opt/application/config.ini""}",remove the file {value},generated
+delete /opt/application/config.ini from the system,file_delete,delete,"{""PATH"":""/opt/application/config.ini""}",delete {value} from the system,generated
+list the contents of /tmp,file_listing,list,"{""PATH"":""/tmp""}",list the contents of {value},generated
+can you list files in /tmp,file_listing,list,"{""PATH"":""/tmp""}",can you list files in {value},generated
+list the contents of /var/log,file_listing,list,"{""PATH"":""/var/log""}",list the contents of {value},generated
+can you list files in /var/log,file_listing,list,"{""PATH"":""/var/log""}",can you list files in {value},generated
+list the contents of /etc,file_listing,list,"{""PATH"":""/etc""}",list the contents of {value},generated
+can you list files in /etc,file_listing,list,"{""PATH"":""/etc""}",can you list files in {value},generated
+list the contents of /opt,file_listing,list,"{""PATH"":""/opt""}",list the contents of {value},generated
+can you list files in /opt,file_listing,list,"{""PATH"":""/opt""}",can you list files in {value},generated
+list the contents of /home/user,file_listing,list,"{""PATH"":""/home/user""}",list the contents of {value},generated
+can you list files in /home/user,file_listing,list,"{""PATH"":""/home/user""}",can you list files in {value},generated
+list the contents of /usr/local,file_listing,list,"{""PATH"":""/usr/local""}",list the contents of {value},generated
+can you list files in /usr/local,file_listing,list,"{""PATH"":""/usr/local""}",can you list files in {value},generated
+list the contents of reports,file_listing,list,"{""PATH"":""reports""}",list the contents of {value},generated
+can you list files in reports,file_listing,list,"{""PATH"":""reports""}",can you list files in {value},generated
+list the contents of backup,file_listing,list,"{""PATH"":""backup""}",list the contents of {value},generated
+can you list files in backup,file_listing,list,"{""PATH"":""backup""}",can you list files in {value},generated
+move /home/user/notes.txt to /var/log/app.log,file_move,move,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/home/user/notes.txt""}",move {source} to {destination},generated
+move /var/log/system.log to /var/log/app.log,file_move,move,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/var/log/system.log""}",move {source} to {destination},generated
+move /var/log/system.log to /tmp/report.txt,file_move,move,"{""DESTINATION_PATH"":""/tmp/report.txt"",""SOURCE_PATH"":""/var/log/system.log""}",move {source} to {destination},generated
+move /etc/hosts to /opt/application/config.ini,file_move,move,"{""DESTINATION_PATH"":""/opt/application/config.ini"",""SOURCE_PATH"":""/etc/hosts""}",move {source} to {destination},generated
+move /tmp/data.txt to /etc/hosts,file_move,move,"{""DESTINATION_PATH"":""/etc/hosts"",""SOURCE_PATH"":""/tmp/data.txt""}",move {source} to {destination},generated
+move /opt/application/config.ini to /home/user/notes.txt,file_move,move,"{""DESTINATION_PATH"":""/home/user/notes.txt"",""SOURCE_PATH"":""/opt/application/config.ini""}",move {source} to {destination},generated
+move /var/log/app.log to /etc/nginx/nginx.conf,file_move,move,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/var/log/app.log""}",move {source} to {destination},generated
+move /tmp/data.txt to /home/user/notes.txt,file_move,move,"{""DESTINATION_PATH"":""/home/user/notes.txt"",""SOURCE_PATH"":""/tmp/data.txt""}",move {source} to {destination},generated
+move /etc/hosts to /etc/nginx/nginx.conf,file_move,move,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/etc/hosts""}",move {source} to {destination},generated
+move /etc/nginx/nginx.conf to /opt/application/config.ini,file_move,move,"{""DESTINATION_PATH"":""/opt/application/config.ini"",""SOURCE_PATH"":""/etc/nginx/nginx.conf""}",move {source} to {destination},generated
+move /home/user/notes.txt to /etc/nginx/nginx.conf,file_move,move,"{""DESTINATION_PATH"":""/etc/nginx/nginx.conf"",""SOURCE_PATH"":""/home/user/notes.txt""}",move {source} to {destination},generated
+move /tmp/report.txt to /var/log/app.log,file_move,move,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/tmp/report.txt""}",move {source} to {destination},generated
+move /etc/hosts to /var/log/app.log,file_move,move,"{""DESTINATION_PATH"":""/var/log/app.log"",""SOURCE_PATH"":""/etc/hosts""}",move {source} to {destination},generated
+display the first lines of /etc/hosts,file_read,head,"{""PATH"":""/etc/hosts""}",display the first lines of {value},generated
+read /tmp/report.txt,file_read,read,"{""PATH"":""/tmp/report.txt""}",read {value},generated
+display the first lines of /tmp/report.txt,file_read,head,"{""PATH"":""/tmp/report.txt""}",display the first lines of {value},generated
+read /etc/hosts,file_read,read,"{""PATH"":""/etc/hosts""}",read {value},generated
+display the first lines of /var/log/system.log,file_read,head,"{""PATH"":""/var/log/system.log""}",display the first lines of {value},generated
+read /home/user/notes.txt,file_read,read,"{""PATH"":""/home/user/notes.txt""}",read {value},generated
+display the first lines of /etc/nginx/nginx.conf,file_read,head,"{""PATH"":""/etc/nginx/nginx.conf""}",display the first lines of {value},generated
+read /etc/nginx/nginx.conf,file_read,read,"{""PATH"":""/etc/nginx/nginx.conf""}",read {value},generated
+display the first lines of /var/log/app.log,file_read,head,"{""PATH"":""/var/log/app.log""}",display the first lines of {value},generated
+read /opt/application/config.ini,file_read,read,"{""PATH"":""/opt/application/config.ini""}",read {value},generated
+display the first lines of /opt/application/config.ini,file_read,head,"{""PATH"":""/opt/application/config.ini""}",display the first lines of {value},generated
+read /var/log/system.log,file_read,read,"{""PATH"":""/var/log/system.log""}",read {value},generated
+display the first lines of /home/user/notes.txt,file_read,head,"{""PATH"":""/home/user/notes.txt""}",display the first lines of {value},generated
+look for files named ERROR,file_search,find,"{""PATTERN"":""ERROR""}",look for files named {value},generated
+look for files named WARNING,file_search,find,"{""PATTERN"":""WARNING""}",look for files named {value},generated
+look for files named failed,file_search,find,"{""PATTERN"":""failed""}",look for files named {value},generated
+look for files named timeout,file_search,find,"{""PATTERN"":""timeout""}",look for files named {value},generated
+look for files named database,file_search,find,"{""PATTERN"":""database""}",look for files named {value},generated
+look for files named connection,file_search,find,"{""PATTERN"":""connection""}",look for files named {value},generated
+look for files named authentication,file_search,find,"{""PATTERN"":""authentication""}",look for files named {value},generated
+look for files named exception,file_search,find,"{""PATTERN"":""exception""}",look for files named {value},generated
+check memory usage,memory_inspection,memory_usage,{},check memory usage,generated
+tell me how much RAM is available,memory_inspection,memory_usage,{},tell me how much RAM is available,generated
+list the system network interfaces,network_inspection,interfaces,{},list the system network interfaces,generated
+show network adapter details,network_inspection,interfaces,{},show network adapter details,generated
+list current connections,network_inspection,connections,{},list current connections,generated
+explain photosynthesis,out_of_scope,,{},explain photosynthesis,generated
+recommend a movie,out_of_scope,,{},recommend a movie,generated
+how do I cook pasta,out_of_scope,,{},how do I cook pasta,generated
+give me a workout plan,out_of_scope,,{},give me a workout plan,generated
+remove git,package_management,remove,"{""PACKAGE"":""git""}",remove {value},generated
+uninstall package redis,package_management,remove,"{""PACKAGE"":""redis""}",uninstall package {value},generated
+remove nginx,package_management,remove,"{""PACKAGE"":""nginx""}",remove {value},generated
+uninstall package curl,package_management,remove,"{""PACKAGE"":""curl""}",uninstall package {value},generated
+remove vim,package_management,remove,"{""PACKAGE"":""vim""}",remove {value},generated
+uninstall package git,package_management,remove,"{""PACKAGE"":""git""}",uninstall package {value},generated
+remove curl,package_management,remove,"{""PACKAGE"":""curl""}",remove {value},generated
+uninstall package vim,package_management,remove,"{""PACKAGE"":""vim""}",uninstall package {value},generated
+remove postgresql,package_management,remove,"{""PACKAGE"":""postgresql""}",remove {value},generated
+uninstall package apache2,package_management,remove,"{""PACKAGE"":""apache2""}",uninstall package {value},generated
+remove redis,package_management,remove,"{""PACKAGE"":""redis""}",remove {value},generated
+uninstall package htop,package_management,remove,"{""PACKAGE"":""htop""}",uninstall package {value},generated
+remove apache2,package_management,remove,"{""PACKAGE"":""apache2""}",remove {value},generated
+uninstall package nginx,package_management,remove,"{""PACKAGE"":""nginx""}",uninstall package {value},generated
+remove htop,package_management,remove,"{""PACKAGE"":""htop""}",remove {value},generated
+chmod /tmp/data.txt to 644,permission_change,chmod,"{""PATH"":""/tmp/data.txt"",""PERMISSION"":""644""}",chmod {path} to {permission},generated
+chmod /tmp/report.txt to 750,permission_change,chmod,"{""PATH"":""/tmp/report.txt"",""PERMISSION"":""750""}",chmod {path} to {permission},generated
+chmod /home/user/notes.txt to 640,permission_change,chmod,"{""PATH"":""/home/user/notes.txt"",""PERMISSION"":""640""}",chmod {path} to {permission},generated
+chmod /var/log/system.log to 600,permission_change,chmod,"{""PATH"":""/var/log/system.log"",""PERMISSION"":""600""}",chmod {path} to {permission},generated
+chmod /opt/application/config.ini to 644,permission_change,chmod,"{""PATH"":""/opt/application/config.ini"",""PERMISSION"":""644""}",chmod {path} to {permission},generated
+chmod /var/log/system.log to 640,permission_change,chmod,"{""PATH"":""/var/log/system.log"",""PERMISSION"":""640""}",chmod {path} to {permission},generated
+chmod /opt/application/config.ini to 755,permission_change,chmod,"{""PATH"":""/opt/application/config.ini"",""PERMISSION"":""755""}",chmod {path} to {permission},generated
+chmod /var/log/app.log to 700,permission_change,chmod,"{""PATH"":""/var/log/app.log"",""PERMISSION"":""700""}",chmod {path} to {permission},generated
+chmod /var/log/system.log to 750,permission_change,chmod,"{""PATH"":""/var/log/system.log"",""PERMISSION"":""750""}",chmod {path} to {permission},generated
+chmod /tmp/data.txt to 750,permission_change,chmod,"{""PATH"":""/tmp/data.txt"",""PERMISSION"":""750""}",chmod {path} to {permission},generated
+chmod /tmp/report.txt to 644,permission_change,chmod,"{""PATH"":""/tmp/report.txt"",""PERMISSION"":""644""}",chmod {path} to {permission},generated
+chmod /etc/nginx/nginx.conf to 600,permission_change,chmod,"{""PATH"":""/etc/nginx/nginx.conf"",""PERMISSION"":""600""}",chmod {path} to {permission},generated
+chmod /tmp/report.txt to 755,permission_change,chmod,"{""PATH"":""/tmp/report.txt"",""PERMISSION"":""755""}",chmod {path} to {permission},generated
+show me the process list,process_inspection,list,{},show me the process list,generated
+display information about process 1234,process_inspection,inspect,"{""PID"":""1234""}",display information about process {value},generated
+display information about process 2345,process_inspection,inspect,"{""PID"":""2345""}",display information about process {value},generated
+display information about process 3456,process_inspection,inspect,"{""PID"":""3456""}",display information about process {value},generated
+display information about process 4321,process_inspection,inspect,"{""PID"":""4321""}",display information about process {value},generated
+display information about process 5678,process_inspection,inspect,"{""PID"":""5678""}",display information about process {value},generated
+display information about process 6789,process_inspection,inspect,"{""PID"":""6789""}",display information about process {value},generated
+display information about process 7654,process_inspection,inspect,"{""PID"":""7654""}",display information about process {value},generated
+display information about process 9876,process_inspection,inspect,"{""PID"":""9876""}",display information about process {value},generated
+please stop process 4321,process_termination,terminate,"{""PID"":""4321""}",please stop process {value},generated
+terminate the process with PID 3456,process_termination,terminate,"{""PID"":""3456""}",terminate the process with PID {value},generated
+please stop process 6789,process_termination,terminate,"{""PID"":""6789""}",please stop process {value},generated
+terminate the process with PID 9876,process_termination,terminate,"{""PID"":""9876""}",terminate the process with PID {value},generated
+please stop process 3456,process_termination,terminate,"{""PID"":""3456""}",please stop process {value},generated
+terminate the process with PID 5678,process_termination,terminate,"{""PID"":""5678""}",terminate the process with PID {value},generated
+please stop process 1234,process_termination,terminate,"{""PID"":""1234""}",please stop process {value},generated
+terminate the process with PID 1234,process_termination,terminate,"{""PID"":""1234""}",terminate the process with PID {value},generated
+please stop process 7654,process_termination,terminate,"{""PID"":""7654""}",please stop process {value},generated
+terminate the process with PID 7654,process_termination,terminate,"{""PID"":""7654""}",terminate the process with PID {value},generated
+please stop process 2345,process_termination,terminate,"{""PID"":""2345""}",please stop process {value},generated
+terminate the process with PID 6789,process_termination,terminate,"{""PID"":""6789""}",terminate the process with PID {value},generated
+please stop process 5678,process_termination,terminate,"{""PID"":""5678""}",please stop process {value},generated
+terminate the process with PID 4321,process_termination,terminate,"{""PID"":""4321""}",terminate the process with PID {value},generated
+check whether nginx is running,service_inspection,status,"{""SERVICE"":""nginx""}",check whether {value} is running,generated
+can you tell me if nginx is running,service_inspection,status,"{""SERVICE"":""nginx""}",can you tell me if {value} is running,generated
+check whether ssh is running,service_inspection,status,"{""SERVICE"":""ssh""}",check whether {value} is running,generated
+can you tell me if ssh is running,service_inspection,status,"{""SERVICE"":""ssh""}",can you tell me if {value} is running,generated
+check whether apache is running,service_inspection,status,"{""SERVICE"":""apache""}",check whether {value} is running,generated
+can you tell me if apache is running,service_inspection,status,"{""SERVICE"":""apache""}",can you tell me if {value} is running,generated
+check whether docker is running,service_inspection,status,"{""SERVICE"":""docker""}",check whether {value} is running,generated
+can you tell me if docker is running,service_inspection,status,"{""SERVICE"":""docker""}",can you tell me if {value} is running,generated
+check whether cron is running,service_inspection,status,"{""SERVICE"":""cron""}",check whether {value} is running,generated
+can you tell me if cron is running,service_inspection,status,"{""SERVICE"":""cron""}",can you tell me if {value} is running,generated
+check whether mysql is running,service_inspection,status,"{""SERVICE"":""mysql""}",check whether {value} is running,generated
+can you tell me if mysql is running,service_inspection,status,"{""SERVICE"":""mysql""}",can you tell me if {value} is running,generated
+check whether postgresql is running,service_inspection,status,"{""SERVICE"":""postgresql""}",check whether {value} is running,generated
+can you tell me if postgresql is running,service_inspection,status,"{""SERVICE"":""postgresql""}",can you tell me if {value} is running,generated
+check whether redis is running,service_inspection,status,"{""SERVICE"":""redis""}",check whether {value} is running,generated
+can you tell me if redis is running,service_inspection,status,"{""SERVICE"":""redis""}",can you tell me if {value} is running,generated
+reload the apache service,service_management,reload,"{""SERVICE"":""apache""}",reload the {value} service,generated
+start the postgresql service,service_management,start,"{""SERVICE"":""postgresql""}",start the {value} service,generated
+reload the cron service,service_management,reload,"{""SERVICE"":""cron""}",reload the {value} service,generated
+start the redis service,service_management,start,"{""SERVICE"":""redis""}",start the {value} service,generated
+reload the redis service,service_management,reload,"{""SERVICE"":""redis""}",reload the {value} service,generated
+start the cron service,service_management,start,"{""SERVICE"":""cron""}",start the {value} service,generated
+reload the ssh service,service_management,reload,"{""SERVICE"":""ssh""}",reload the {value} service,generated
+start the nginx service,service_management,start,"{""SERVICE"":""nginx""}",start the {value} service,generated
+reload the postgresql service,service_management,reload,"{""SERVICE"":""postgresql""}",reload the {value} service,generated
+start the ssh service,service_management,start,"{""SERVICE"":""ssh""}",start the {value} service,generated
+reload the mysql service,service_management,reload,"{""SERVICE"":""mysql""}",reload the {value} service,generated
+start the docker service,service_management,start,"{""SERVICE"":""docker""}",start the {value} service,generated
+reload the docker service,service_management,reload,"{""SERVICE"":""docker""}",reload the {value} service,generated
+show disk usage,storage_inspection,filesystem_usage,{},show disk usage,generated
+check the storage used by /tmp,storage_inspection,directory_size,"{""PATH"":""/tmp""}",check the storage used by {value},generated
+check the storage used by /var/log,storage_inspection,directory_size,"{""PATH"":""/var/log""}",check the storage used by {value},generated
+check the storage used by /etc,storage_inspection,directory_size,"{""PATH"":""/etc""}",check the storage used by {value},generated
+check the storage used by /opt,storage_inspection,directory_size,"{""PATH"":""/opt""}",check the storage used by {value},generated
+check the storage used by /home/user,storage_inspection,directory_size,"{""PATH"":""/home/user""}",check the storage used by {value},generated
+check the storage used by /usr/local,storage_inspection,directory_size,"{""PATH"":""/usr/local""}",check the storage used by {value},generated
+check the storage used by reports,storage_inspection,directory_size,"{""PATH"":""reports""}",check the storage used by {value},generated
+check the storage used by backup,storage_inspection,directory_size,"{""PATH"":""backup""}",check the storage used by {value},generated
+show kernel information,system_information,show_kernel,{},show kernel information,generated
+tell me this machine hostname,system_information,show_hostname,{},tell me this machine hostname,generated
+show machine name,system_information,show_hostname,{},show machine name,generated
+please reboot the system,system_power,reboot,{},please reboot the system,generated
+turn this machine off,system_power,shutdown,{},turn this machine off,generated
+check /var/log/system.log for ERROR,text_search,search,"{""PATH"":""/var/log/system.log"",""PATTERN"":""ERROR""}",check {path} for {pattern},generated
+check /etc/hosts for timeout,text_search,search,"{""PATH"":""/etc/hosts"",""PATTERN"":""timeout""}",check {path} for {pattern},generated
+check /opt/application/config.ini for timeout,text_search,search,"{""PATH"":""/opt/application/config.ini"",""PATTERN"":""timeout""}",check {path} for {pattern},generated
+check /var/log/app.log for exception,text_search,search,"{""PATH"":""/var/log/app.log"",""PATTERN"":""exception""}",check {path} for {pattern},generated
+check /tmp/report.txt for authentication,text_search,search,"{""PATH"":""/tmp/report.txt"",""PATTERN"":""authentication""}",check {path} for {pattern},generated
+check /var/log/system.log for timeout,text_search,search,"{""PATH"":""/var/log/system.log"",""PATTERN"":""timeout""}",check {path} for {pattern},generated
+check /tmp/data.txt for exception,text_search,search,"{""PATH"":""/tmp/data.txt"",""PATTERN"":""exception""}",check {path} for {pattern},generated
+check /tmp/report.txt for ERROR,text_search,search,"{""PATH"":""/tmp/report.txt"",""PATTERN"":""ERROR""}",check {path} for {pattern},generated
+check /etc/nginx/nginx.conf for WARNING,text_search,search,"{""PATH"":""/etc/nginx/nginx.conf"",""PATTERN"":""WARNING""}",check {path} for {pattern},generated
+check /opt/application/config.ini for ERROR,text_search,search,"{""PATH"":""/opt/application/config.ini"",""PATTERN"":""ERROR""}",check {path} for {pattern},generated
+check /etc/hosts for WARNING,text_search,search,"{""PATH"":""/etc/hosts"",""PATTERN"":""WARNING""}",check {path} for {pattern},generated
+check /tmp/data.txt for failed,text_search,search,"{""PATH"":""/tmp/data.txt"",""PATTERN"":""failed""}",check {path} for {pattern},generated
+check /opt/application/config.ini for database,text_search,search,"{""PATH"":""/opt/application/config.ini"",""PATTERN"":""database""}",check {path} for {pattern},generated
+check /var/log/app.log for timeout,text_search,search,"{""PATH"":""/var/log/app.log"",""PATTERN"":""timeout""}",check {path} for {pattern},generated
+check /tmp/data.txt for authentication,text_search,search,"{""PATH"":""/tmp/data.txt"",""PATTERN"":""authentication""}",check {path} for {pattern},generated
+check /var/log/app.log for WARNING,text_search,search,"{""PATH"":""/var/log/app.log"",""PATTERN"":""WARNING""}",check {path} for {pattern},generated
+check /var/log/app.log for failed,text_search,search,"{""PATH"":""/var/log/app.log"",""PATTERN"":""failed""}",check {path} for {pattern},generated

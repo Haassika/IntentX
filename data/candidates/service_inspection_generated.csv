@@ -1,0 +1,97 @@
+text,intent,action,entities,template_family
+check nginx status,service_inspection,status,"{""SERVICE"":""nginx""}",check {service} status
+show nginx status,service_inspection,status,"{""SERVICE"":""nginx""}",show {service} status
+is nginx running,service_inspection,status,"{""SERVICE"":""nginx""}",is {service} running
+is the nginx service running,service_inspection,status,"{""SERVICE"":""nginx""}",is the {service} service running
+check whether nginx is running,service_inspection,status,"{""SERVICE"":""nginx""}",check whether {service} is running
+show me the status of nginx,service_inspection,status,"{""SERVICE"":""nginx""}",show me the status of {service}
+can you check nginx status,service_inspection,status,"{""SERVICE"":""nginx""}",can you check {service} status
+please check nginx status,service_inspection,status,"{""SERVICE"":""nginx""}",please check {service} status
+tell me whether nginx is running,service_inspection,status,"{""SERVICE"":""nginx""}",tell me whether {service} is running
+what is the current status of nginx,service_inspection,status,"{""SERVICE"":""nginx""}",what is the current status of {service}
+can you tell me if nginx is running,service_inspection,status,"{""SERVICE"":""nginx""}",can you tell me if {service} is running
+please show me the current status of nginx,service_inspection,status,"{""SERVICE"":""nginx""}",please show me the current status of {service}
+check ssh status,service_inspection,status,"{""SERVICE"":""ssh""}",check {service} status
+show ssh status,service_inspection,status,"{""SERVICE"":""ssh""}",show {service} status
+is ssh running,service_inspection,status,"{""SERVICE"":""ssh""}",is {service} running
+is the ssh service running,service_inspection,status,"{""SERVICE"":""ssh""}",is the {service} service running
+check whether ssh is running,service_inspection,status,"{""SERVICE"":""ssh""}",check whether {service} is running
+show me the status of ssh,service_inspection,status,"{""SERVICE"":""ssh""}",show me the status of {service}
+can you check ssh status,service_inspection,status,"{""SERVICE"":""ssh""}",can you check {service} status
+please check ssh status,service_inspection,status,"{""SERVICE"":""ssh""}",please check {service} status
+tell me whether ssh is running,service_inspection,status,"{""SERVICE"":""ssh""}",tell me whether {service} is running
+what is the current status of ssh,service_inspection,status,"{""SERVICE"":""ssh""}",what is the current status of {service}
+can you tell me if ssh is running,service_inspection,status,"{""SERVICE"":""ssh""}",can you tell me if {service} is running
+please show me the current status of ssh,service_inspection,status,"{""SERVICE"":""ssh""}",please show me the current status of {service}
+check apache status,service_inspection,status,"{""SERVICE"":""apache""}",check {service} status
+show apache status,service_inspection,status,"{""SERVICE"":""apache""}",show {service} status
+is apache running,service_inspection,status,"{""SERVICE"":""apache""}",is {service} running
+is the apache service running,service_inspection,status,"{""SERVICE"":""apache""}",is the {service} service running
+check whether apache is running,service_inspection,status,"{""SERVICE"":""apache""}",check whether {service} is running
+show me the status of apache,service_inspection,status,"{""SERVICE"":""apache""}",show me the status of {service}
+can you check apache status,service_inspection,status,"{""SERVICE"":""apache""}",can you check {service} status
+please check apache status,service_inspection,status,"{""SERVICE"":""apache""}",please check {service} status
+tell me whether apache is running,service_inspection,status,"{""SERVICE"":""apache""}",tell me whether {service} is running
+what is the current status of apache,service_inspection,status,"{""SERVICE"":""apache""}",what is the current status of {service}
+can you tell me if apache is running,service_inspection,status,"{""SERVICE"":""apache""}",can you tell me if {service} is running
+please show me the current status of apache,service_inspection,status,"{""SERVICE"":""apache""}",please show me the current status of {service}
+check docker status,service_inspection,status,"{""SERVICE"":""docker""}",check {service} status
+show docker status,service_inspection,status,"{""SERVICE"":""docker""}",show {service} status
+is docker running,service_inspection,status,"{""SERVICE"":""docker""}",is {service} running
+is the docker service running,service_inspection,status,"{""SERVICE"":""docker""}",is the {service} service running
+check whether docker is running,service_inspection,status,"{""SERVICE"":""docker""}",check whether {service} is running
+show me the status of docker,service_inspection,status,"{""SERVICE"":""docker""}",show me the status of {service}
+can you check docker status,service_inspection,status,"{""SERVICE"":""docker""}",can you check {service} status
+please check docker status,service_inspection,status,"{""SERVICE"":""docker""}",please check {service} status
+tell me whether docker is running,service_inspection,status,"{""SERVICE"":""docker""}",tell me whether {service} is running
+what is the current status of docker,service_inspection,status,"{""SERVICE"":""docker""}",what is the current status of {service}
+can you tell me if docker is running,service_inspection,status,"{""SERVICE"":""docker""}",can you tell me if {service} is running
+please show me the current status of docker,service_inspection,status,"{""SERVICE"":""docker""}",please show me the current status of {service}
+check cron status,service_inspection,status,"{""SERVICE"":""cron""}",check {service} status
+show cron status,service_inspection,status,"{""SERVICE"":""cron""}",show {service} status
+is cron running,service_inspection,status,"{""SERVICE"":""cron""}",is {service} running
+is the cron service running,service_inspection,status,"{""SERVICE"":""cron""}",is the {service} service running
+check whether cron is running,service_inspection,status,"{""SERVICE"":""cron""}",check whether {service} is running
+show me the status of cron,service_inspection,status,"{""SERVICE"":""cron""}",show me the status of {service}
+can you check cron status,service_inspection,status,"{""SERVICE"":""cron""}",can you check {service} status
+please check cron status,service_inspection,status,"{""SERVICE"":""cron""}",please check {service} status
+tell me whether cron is running,service_inspection,status,"{""SERVICE"":""cron""}",tell me whether {service} is running
+what is the current status of cron,service_inspection,status,"{""SERVICE"":""cron""}",what is the current status of {service}
+can you tell me if cron is running,service_inspection,status,"{""SERVICE"":""cron""}",can you tell me if {service} is running
+please show me the current status of cron,service_inspection,status,"{""SERVICE"":""cron""}",please show me the current status of {service}
+check mysql status,service_inspection,status,"{""SERVICE"":""mysql""}",check {service} status
+show mysql status,service_inspection,status,"{""SERVICE"":""mysql""}",show {service} status
+is mysql running,service_inspection,status,"{""SERVICE"":""mysql""}",is {service} running
+is the mysql service running,service_inspection,status,"{""SERVICE"":""mysql""}",is the {service} service running
+check whether mysql is running,service_inspection,status,"{""SERVICE"":""mysql""}",check whether {service} is running
+show me the status of mysql,service_inspection,status,"{""SERVICE"":""mysql""}",show me the status of {service}
+can you check mysql status,service_inspection,status,"{""SERVICE"":""mysql""}",can you check {service} status
+please check mysql status,service_inspection,status,"{""SERVICE"":""mysql""}",please check {service} status
+tell me whether mysql is running,service_inspection,status,"{""SERVICE"":""mysql""}",tell me whether {service} is running
+what is the current status of mysql,service_inspection,status,"{""SERVICE"":""mysql""}",what is the current status of {service}
+can you tell me if mysql is running,service_inspection,status,"{""SERVICE"":""mysql""}",can you tell me if {service} is running
+please show me the current status of mysql,service_inspection,status,"{""SERVICE"":""mysql""}",please show me the current status of {service}
+check postgresql status,service_inspection,status,"{""SERVICE"":""postgresql""}",check {service} status
+show postgresql status,service_inspection,status,"{""SERVICE"":""postgresql""}",show {service} status
+is postgresql running,service_inspection,status,"{""SERVICE"":""postgresql""}",is {service} running
+is the postgresql service running,service_inspection,status,"{""SERVICE"":""postgresql""}",is the {service} service running
+check whether postgresql is running,service_inspection,status,"{""SERVICE"":""postgresql""}",check whether {service} is running
+show me the status of postgresql,service_inspection,status,"{""SERVICE"":""postgresql""}",show me the status of {service}
+can you check postgresql status,service_inspection,status,"{""SERVICE"":""postgresql""}",can you check {service} status
+please check postgresql status,service_inspection,status,"{""SERVICE"":""postgresql""}",please check {service} status
+tell me whether postgresql is running,service_inspection,status,"{""SERVICE"":""postgresql""}",tell me whether {service} is running
+what is the current status of postgresql,service_inspection,status,"{""SERVICE"":""postgresql""}",what is the current status of {service}
+can you tell me if postgresql is running,service_inspection,status,"{""SERVICE"":""postgresql""}",can you tell me if {service} is running
+please show me the current status of postgresql,service_inspection,status,"{""SERVICE"":""postgresql""}",please show me the current status of {service}
+check redis status,service_inspection,status,"{""SERVICE"":""redis""}",check {service} status
+show redis status,service_inspection,status,"{""SERVICE"":""redis""}",show {service} status
+is redis running,service_inspection,status,"{""SERVICE"":""redis""}",is {service} running
+is the redis service running,service_inspection,status,"{""SERVICE"":""redis""}",is the {service} service running
+check whether redis is running,service_inspection,status,"{""SERVICE"":""redis""}",check whether {service} is running
+show me the status of redis,service_inspection,status,"{""SERVICE"":""redis""}",show me the status of {service}
+can you check redis status,service_inspection,status,"{""SERVICE"":""redis""}",can you check {service} status
+please check redis status,service_inspection,status,"{""SERVICE"":""redis""}",please check {service} status
+tell me whether redis is running,service_inspection,status,"{""SERVICE"":""redis""}",tell me whether {service} is running
+what is the current status of redis,service_inspection,status,"{""SERVICE"":""redis""}",what is the current status of {service}
+can you tell me if redis is running,service_inspection,status,"{""SERVICE"":""redis""}",can you tell me if {service} is running
+please show me the current status of redis,service_inspection,status,"{""SERVICE"":""redis""}",please show me the current status of {service}

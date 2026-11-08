@@ -1,0 +1,289 @@
+version: "1.0"
+
+metadata:
+  name: "IntentX Security Policy"
+  description: >
+    Defines high-level safety and authorization rules for IntentX.
+    AI predictions do not authorize command execution.
+    Final execution decisions are controlled by deterministic
+    validation, risk, and policy mechanisms.
+
+principles:
+  fail_closed: true
+  least_privilege: true
+  ai_can_authorize_execution: false
+  arbitrary_shell_execution_allowed: false
+  critical_operations_auto_execute: false
+
+risk_levels:
+  low:
+    min_score: 0
+    max_score: 25
+
+  medium:
+    min_score: 26
+    max_score: 50
+
+  high:
+    min_score: 51
+    max_score: 75
+
+  critical:
+    min_score: 76
+    max_score: 100
+
+environments:
+  - DEV
+  - TEST
+  - PROD
+
+roles:
+
+  VIEWER:
+    description: "Read-only system inspection access."
+
+    allowed_categories:
+      - inspection
+      - search
+
+    state_changing_allowed: false
+
+  OPERATOR:
+    description: >
+      Operational user with inspection access and limited
+      state-changing capabilities subject to policy controls.
+
+    allowed_categories:
+      - inspection
+      - search
+      - file_operation
+      - administration
+
+    state_changing_allowed: true
+
+  SENIOR_OPERATOR:
+    description: >
+      Experienced operational user permitted to request broader
+      administrative actions subject to risk and environment policy.
+
+    allowed_categories:
+      - inspection
+      - search
+      - file_operation
+      - administration
+      - destructive
+
+    state_changing_allowed: true
+
+  ADMINISTRATOR:
+    description: >
+      Privileged administrator with broad operational permissions.
+      Hard safety boundaries still apply.
+
+    allowed_categories:
+      - inspection
+      - search
+      - file_operation
+      - administration
+      - destructive
+      - critical
+
+    state_changing_allowed: true
+
+decision_types:
+  - ALLOW
+  - REQUIRE_APPROVAL
+  - DENY
+  - CLARIFICATION_REQUIRED
+
+global_denials:
+
+  arbitrary_shell:
+    description: "Arbitrary user-supplied shell commands are not executable."
+    decision: DENY
+
+  unsupported_intent:
+    description: "Unsupported or out-of-scope intent."
+    decision: DENY
+
+  intent_command_mismatch:
+    description: "Proposed operation does not match predicted intent."
+    decision: DENY
+
+  invalid_entity:
+    description: "One or more entities failed validation."
+    decision: DENY
+
+  unsupported_executable:
+    description: "Executable is outside the approved intent catalog."
+    decision: DENY
+
+  unsupported_shell_construct:
+    description: >
+      Unsupported shell constructs such as arbitrary command
+      substitution, pipelines, or redirection are denied.
+    decision: DENY
+
+confidence_policy:
+
+  description: >
+    Model confidence is used to determine whether IntentX has
+    sufficient evidence to continue intent processing. The final
+    threshold will be selected experimentally rather than assumed.
+
+  below_threshold:
+    decision: CLARIFICATION_REQUIRED
+
+  above_threshold:
+    decision: CONTINUE_ANALYSIS
+
+risk_decisions:
+
+  low:
+    default_decision: ALLOW
+
+  medium:
+    default_decision: REQUIRE_APPROVAL
+
+  high:
+    default_decision: REQUIRE_APPROVAL
+
+  critical:
+    default_decision: DENY
+
+environment_policy:
+
+  DEV:
+    description: "Development environment."
+    risk_adjustment: 0
+
+  TEST:
+    description: "Testing environment."
+    risk_adjustment: 5
+
+  PROD:
+    description: "Production environment."
+    risk_adjustment: 15
+
+hard_safety_boundaries:
+
+  destructive_disk_operation:
+    description: >
+      Destructive disk/filesystem operations are not executable
+      through the IntentX V1 execution broker.
+    decision: DENY
+
+  arbitrary_remote_code_execution:
+    description: >
+      Downloading and directly executing arbitrary remote code
+      is prohibited.
+    decision: DENY
+
+  unrestricted_root_shell:
+    description: >
+      IntentX does not provide unrestricted root shell access.
+    decision: DENY
+
+execution_requirements:
+
+  require_intent_validation: true
+  require_entity_validation: true
+  require_risk_assessment: true
+  require_policy_evaluation: true
+
+  shell_mode_allowed: false
+
+  require_allowlisted_executable: true
+  require_validated_arguments: true
+
+  execution_timeout_required: true
+  output_limit_required: true
+  audit_record_required: true
+
+  runtime_limits:
+    timeout_seconds: 10
+    stdout_max_bytes: 65536
+    stderr_max_bytes: 65536
+
+  process_environment:
+    inherit_parent_environment: false
+
+    trusted_executable_directories:
+      - /usr/local/sbin
+      - /usr/local/bin
+      - /usr/sbin
+      - /usr/bin
+      - /sbin
+      - /bin
+
+    fixed_environment:
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+
+risk_scoring:
+
+  description: >
+    Deterministic V1 risk-scoring parameters used to assess
+    validated operation plans. These values represent an
+    engineering policy risk index and are not probabilities
+    or machine-learned predictions.
+
+  factor_weights:
+
+    state_changing: 20
+
+    privilege_required:
+      false: 0
+      conditional: 10
+      true: 20
+
+    critical_operation: 60
+
+  action_weights:
+
+    # Read-only inspection and search actions
+    show_os: 0
+    show_kernel: 0
+    show_architecture: 0
+    show_hostname: 0
+    filesystem_usage: 0
+    directory_size: 0
+    memory_usage: 0
+    list: 0
+    inspect: 0
+    status: 0
+    interfaces: 0
+    connections: 0
+    listening_ports: 0
+    read: 0
+    head: 0
+    tail: 0
+    find: 0
+    search: 0
+
+    # File operations
+    create_file: 5
+    create_directory: 5
+    copy: 5
+    move: 10
+    rename: 10
+    delete: 20
+
+    # Administrative operations
+    chmod: 15
+    chown: 15
+    terminate: 20
+    force_terminate: 30
+    start: 15
+    stop: 20
+    restart: 20
+    reload: 15
+    install: 20
+    remove: 25
+    update: 15
+
+    # Critical operations
+    reboot: 20
+    shutdown: 25
+    format: 40

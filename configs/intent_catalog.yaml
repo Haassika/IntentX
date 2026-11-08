@@ -1,0 +1,654 @@
+version: "1.0"
+
+metadata:
+  name: "IntentX Intent Catalog"
+  description: >
+    Defines the Linux intent categories supported by IntentX.
+    This catalog describes user intentions, supported actions,
+    required entities, and permitted executable families.
+    It does not authorize command execution.
+
+defaults:
+  unknown_intent: "out_of_scope"
+  fail_closed: true
+
+intents:
+
+  # ============================================================
+  # 1. SYSTEM INFORMATION
+  # ============================================================
+
+  system_information:
+    category: inspection
+    description: "Retrieve general operating system and system information."
+
+    examples:
+      - "show system information"
+      - "what operating system is this"
+      - "show kernel version"
+      - "show machine architecture"
+
+    actions:
+      - show_os
+      - show_kernel
+      - show_architecture
+      - show_hostname
+
+    entities: []
+
+    allowed_executables:
+      - uname
+      - hostname
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 2. STORAGE INSPECTION
+  # ============================================================
+
+  storage_inspection:
+    category: inspection
+    description: "Inspect filesystem and storage utilization."
+
+    examples:
+      - "show disk space"
+      - "how much storage is available"
+      - "show filesystem usage"
+      - "check directory size"
+
+    actions:
+      - filesystem_usage
+      - directory_size
+
+    entities:
+      - PATH
+
+    allowed_executables:
+      - df
+      - du
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 3. MEMORY INSPECTION
+  # ============================================================
+
+  memory_inspection:
+    category: inspection
+    description: "Inspect system memory utilization."
+
+    examples:
+      - "show memory usage"
+      - "how much RAM is available"
+      - "check free memory"
+
+    actions:
+      - memory_usage
+
+    entities: []
+
+    allowed_executables:
+      - free
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 4. PROCESS INSPECTION
+  # ============================================================
+
+  process_inspection:
+    category: inspection
+    description: "Inspect running Linux processes."
+
+    examples:
+      - "show running processes"
+      - "list processes"
+      - "show process 1234"
+      - "find nginx processes"
+
+    actions:
+      - list
+      - inspect
+
+    entities:
+      - PID
+      - PATTERN
+
+    allowed_executables:
+      - ps
+      - pgrep
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 5. SERVICE INSPECTION
+  # ============================================================
+
+  service_inspection:
+    category: inspection
+    description: "Inspect the state of a system service."
+
+    examples:
+      - "check nginx status"
+      - "is ssh running"
+      - "show apache service status"
+
+    actions:
+      - status
+
+    entities:
+      - SERVICE
+
+    required_entities:
+      - SERVICE
+
+    allowed_executables:
+      - systemctl
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 6. NETWORK INSPECTION
+  # ============================================================
+
+  network_inspection:
+    category: inspection
+    description: "Inspect local network configuration and connections."
+
+    examples:
+      - "show listening ports"
+      - "show network interfaces"
+      - "show active connections"
+
+    actions:
+      - interfaces
+      - connections
+      - listening_ports
+
+    entities:
+      - PORT
+
+    allowed_executables:
+      - ip
+      - ss
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 7. FILE LISTING
+  # ============================================================
+
+  file_listing:
+    category: inspection
+    description: "List files and directories."
+
+    examples:
+      - "show files"
+      - "list files in this directory"
+      - "show files in /tmp"
+
+    actions:
+      - list
+
+    entities:
+      - PATH
+
+    allowed_executables:
+      - ls
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 8. FILE READING
+  # ============================================================
+
+  file_read:
+    category: inspection
+    description: "Read approved file content without modification."
+
+    examples:
+      - "show report.txt"
+      - "read this log file"
+      - "show the last lines of app.log"
+
+    actions:
+      - read
+      - head
+      - tail
+
+    entities:
+      - PATH
+
+    required_entities:
+      - PATH
+
+    allowed_executables:
+      - cat
+      - head
+      - tail
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 9. FILE SEARCH
+  # ============================================================
+
+  file_search:
+    category: search
+    description: "Search for files and directories."
+
+    examples:
+      - "find python files"
+      - "find report.txt"
+      - "search for log files"
+
+    actions:
+      - find
+
+    entities:
+      - PATH
+      - PATTERN
+
+    required_entities:
+      - PATTERN
+
+    allowed_executables:
+      - find
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 10. TEXT SEARCH
+  # ============================================================
+
+  text_search:
+    category: search
+    description: "Search text within files."
+
+    examples:
+      - "find ERROR in app.log"
+      - "search for failed in the log"
+      - "find this text in a file"
+
+    actions:
+      - search
+
+    entities:
+      - PATTERN
+      - PATH
+
+    required_entities:
+      - PATTERN
+      - PATH
+
+    allowed_executables:
+      - grep
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: true
+
+
+  # ============================================================
+  # 11. FILE CREATION
+  # ============================================================
+
+  file_create:
+    category: file_operation
+    description: "Create approved files or directories."
+
+    examples:
+      - "create reports directory"
+      - "create notes.txt"
+      - "make a new folder"
+
+    actions:
+      - create_file
+      - create_directory
+
+    entities:
+      - PATH
+
+    required_entities:
+      - PATH
+
+    allowed_executables:
+      - touch
+      - mkdir
+
+    state_changing: true
+    privilege_required: false
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 12. FILE COPY
+  # ============================================================
+
+  file_copy:
+    category: file_operation
+    description: "Copy a file or directory."
+
+    examples:
+      - "copy report.txt to backup"
+      - "make a copy of this file"
+
+    actions:
+      - copy
+
+    entities:
+      - SOURCE_PATH
+      - DESTINATION_PATH
+
+    required_entities:
+      - SOURCE_PATH
+      - DESTINATION_PATH
+
+    allowed_executables:
+      - cp
+
+    state_changing: true
+    privilege_required: false
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 13. FILE MOVE
+  # ============================================================
+
+  file_move:
+    category: file_operation
+    description: "Move or rename files and directories."
+
+    examples:
+      - "move report.txt to archive"
+      - "rename old.txt to new.txt"
+
+    actions:
+      - move
+      - rename
+
+    entities:
+      - SOURCE_PATH
+      - DESTINATION_PATH
+
+    required_entities:
+      - SOURCE_PATH
+      - DESTINATION_PATH
+
+    allowed_executables:
+      - mv
+
+    state_changing: true
+    privilege_required: false
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 14. FILE DELETE
+  # ============================================================
+
+  file_delete:
+    category: destructive
+    description: "Delete an explicitly identified file or directory."
+
+    examples:
+      - "delete report.txt"
+      - "remove this temporary file"
+
+    actions:
+      - delete
+
+    entities:
+      - PATH
+
+    required_entities:
+      - PATH
+
+    allowed_executables:
+      - rm
+
+    state_changing: true
+    privilege_required: conditional
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 15. PERMISSION CHANGE
+  # ============================================================
+
+  permission_change:
+    category: administration
+    description: "Modify filesystem permissions or ownership."
+
+    examples:
+      - "change permissions on report.txt"
+      - "make this file executable"
+      - "change file owner"
+
+    actions:
+      - chmod
+      - chown
+
+    entities:
+      - PATH
+      - PERMISSION
+      - USERNAME
+
+    required_entities:
+      - PATH
+
+    allowed_executables:
+      - chmod
+      - chown
+
+    state_changing: true
+    privilege_required: conditional
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 16. PROCESS TERMINATION
+  # ============================================================
+
+  process_termination:
+    category: administration
+    description: "Request termination of a running process."
+
+    examples:
+      - "stop process 4321"
+      - "terminate PID 4321"
+      - "force kill process 4321"
+
+    actions:
+      - terminate
+      - force_terminate
+
+    entities:
+      - PID
+
+    required_entities:
+      - PID
+
+    allowed_executables:
+      - kill
+
+    state_changing: true
+    privilege_required: conditional
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 17. SERVICE MANAGEMENT
+  # ============================================================
+
+  service_management:
+    category: administration
+    description: "Change the state of a system service."
+
+    examples:
+      - "restart nginx"
+      - "stop apache"
+      - "start ssh"
+
+    actions:
+      - start
+      - stop
+      - restart
+      - reload
+
+    entities:
+      - SERVICE
+
+    required_entities:
+      - SERVICE
+
+    allowed_executables:
+      - systemctl
+
+    state_changing: true
+    privilege_required: conditional
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 18. PACKAGE MANAGEMENT
+  # ============================================================
+
+  package_management:
+    category: administration
+    description: "Install, remove, or update software packages."
+
+    examples:
+      - "install nginx"
+      - "remove package curl"
+      - "update packages"
+
+    actions:
+      - install
+      - remove
+      - update
+
+    entities:
+      - PACKAGE
+
+    allowed_executables:
+      - apt
+      - apt-get
+
+    state_changing: true
+    privilege_required: true
+    auto_execution_candidate: false
+
+
+  # ============================================================
+  # 19. SYSTEM POWER
+  # ============================================================
+
+  system_power:
+    category: critical
+    description: "Request system shutdown or reboot."
+
+    examples:
+      - "restart the machine"
+      - "reboot the server"
+      - "shut down the system"
+
+    actions:
+      - reboot
+      - shutdown
+
+    entities: []
+
+    allowed_executables:
+      - reboot
+      - shutdown
+      - systemctl
+
+    state_changing: true
+    privilege_required: true
+    auto_execution_candidate: false
+    critical_operation: true
+
+
+  # ============================================================
+  # 20. DISK MANAGEMENT
+  # ============================================================
+
+  disk_management:
+    category: critical
+    description: "Potentially destructive operations involving storage devices."
+
+    examples:
+      - "format this disk"
+      - "create a filesystem on this device"
+
+    actions:
+      - format
+
+    entities:
+      - DEVICE
+
+    required_entities:
+      - DEVICE
+
+    allowed_executables:
+      - mkfs
+
+    state_changing: true
+    privilege_required: true
+    auto_execution_candidate: false
+    critical_operation: true
+
+
+  # ============================================================
+  # OUT OF SCOPE
+  # ============================================================
+
+  out_of_scope:
+    category: unsupported
+    description: >
+      Requests that cannot be safely mapped to a supported
+      IntentX operation.
+
+    examples:
+      - "write an email"
+      - "tell me a joke"
+      - "do something with the server"
+
+    actions: []
+
+    entities: []
+
+    allowed_executables: []
+
+    state_changing: false
+    privilege_required: false
+    auto_execution_candidate: false

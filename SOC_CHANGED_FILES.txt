@@ -1,0 +1,10 @@
+README.md
+SOC_DEMO.md
+SOC_TEST_RESULTS.txt
+run_soc.sh
+scripts/demo_intrusion_scenario.py
+src/intentx/api/app.py
+src/intentx/behavior/demo.py
+src/intentx/ui/dashboard.py
+src/intentx/ui/soc.py
+tests/test_soc_demo.py
